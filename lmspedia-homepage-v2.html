@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LMSPedia — The Definitive LMS Resource for Professionals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --bg-soft: #F5F7FA;
+  --bg-warm: #F8F9FC;
+  --ink: #0F1C35;
+  --ink-light: #374151;
+  --muted: #6B7280;
+  --subtle: #9CA3AF;
+  --border: #E2E8F0;
+  --border-dark: #CBD5E1;
+  --blue: #1A56A0;
+  --blue-dark: #133D7A;
+  --blue-light: #EBF3FF;
+  --blue-mid: #D1E5FF;
+  --accent-red: #C0392B;
+  --accent-green: #1A7A4A;
+  --accent-amber: #92600A;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.1), 0 2px 8px rgba(0,0,0,0.05);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--ink-light);
+  line-height: 1.6;
+  font-size: 15px;
+  overflow-x: hidden;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb { background: var(--border-dark); border-radius: 10px; }
+
+/* ── UTILITY ── */
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ── NAV ── */
+.top-bar {
+  background: var(--blue);
+  padding: 8px 0;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.85);
+}
+.top-bar .container {
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
+.top-bar-left { display: flex; align-items: center; gap: 20px; }
+.top-bar a { color: rgba(255,255,255,0.85); font-size: 12.5px; transition: color 0.2s; }
+.top-bar a:hover { color: #fff; }
+.top-bar-sep { color: rgba(255,255,255,0.3); }
+
+nav {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.nav-inner {
+  display: flex; align-items: center;
+  height: 64px; gap: 32px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.nav-logo-mark {
+  width: 36px; height: 36px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-family: 'Lora', serif;
+  font-weight: 700; font-size: 16px;
+}
+.nav-logo-text {
+  font-family: 'Lora', serif;
+  font-size: 1.35rem; font-weight: 700;
+  color: var(--ink); letter-spacing: -0.3px;
+}
+.nav-logo-text span { color: var(--blue); }
+.nav-divider { width: 1px; height: 28px; background: var(--border); flex-shrink: 0; }
+.nav-links {
+  display: flex; align-items: center; gap: 2px;
+  list-style: none; flex: 1;
+}
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--ink-light);
+  padding: 6px 12px; border-radius: 6px;
+  transition: all 0.15s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--blue); background: var(--blue-light); }
+.nav-links .has-dd { position: relative; }
+.nav-links .has-dd > a::after { content: ' ▾'; font-size: 10px; opacity: 0.5; }
+.dd {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 6px;
+  min-width: 210px; box-shadow: var(--shadow-md);
+  opacity: 0; pointer-events: none;
+  transform: translateY(-6px); transition: all 0.2s;
+}
+.has-dd:hover .dd { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.dd a {
+  display: block; padding: 8px 12px; font-size: 13.5px;
+  color: var(--ink-light); border-radius: 6px;
+}
+.dd a:hover { background: var(--bg-soft); color: var(--blue); }
+.nav-right { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+.nav-btn-outline {
+  font-size: 13.5px; font-weight: 600; padding: 7px 16px;
+  border: 1.5px solid var(--blue); border-radius: 6px;
+  color: var(--blue); transition: all 0.15s;
+}
+.nav-btn-outline:hover { background: var(--blue); color: white; }
+.nav-btn-solid {
+  font-size: 13.5px; font-weight: 600; padding: 7px 16px;
+  background: var(--blue); border-radius: 6px;
+  color: white; transition: all 0.15s;
+}
+.nav-btn-solid:hover { background: var(--blue-dark); }
+
+/* ── SECTION COMMON ── */
+section { padding: 64px 0; }
+.section-label {
+  font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 6px;
+}
+.section-label::before { content:''; width: 20px; height: 2px; background: var(--blue); display: block; }
+.section-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  font-weight: 700; color: var(--ink);
+  line-height: 1.2; letter-spacing: -0.3px;
+}
+.section-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 36px; gap: 20px;
+}
+.see-all {
+  font-size: 13.5px; font-weight: 600; color: var(--blue);
+  display: flex; align-items: center; gap: 5px;
+  white-space: nowrap; padding-bottom: 2px;
+  border-bottom: 1.5px solid transparent;
+  transition: all 0.2s;
+}
+.see-all:hover { border-bottom-color: var(--blue); }
+
+/* ── HERO ── */
+.hero {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 0 56px;
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 440px; gap: 60px; align-items: center;
+}
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue-light); border: 1px solid var(--blue-mid);
+  padding: 5px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; color: var(--blue);
+  letter-spacing: 0.04em; margin-bottom: 20px;
+}
+.hero-eyebrow-dot {
+  width: 7px; height: 7px; background: var(--blue);
+  border-radius: 50%; animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,100%{ opacity: 1; } 50%{ opacity: 0.3; }
+}
+.hero-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700; color: var(--ink);
+  line-height: 1.15; letter-spacing: -0.5px;
+  margin-bottom: 20px;
+}
+.hero-title em { font-style: italic; color: var(--blue); }
+.hero-desc {
+  font-size: 16px; color: var(--muted);
+  line-height: 1.8; max-width: 520px;
+  margin-bottom: 32px; font-weight: 400;
+}
+.hero-btns { display: flex; gap: 12px; margin-bottom: 36px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--blue); color: white;
+  padding: 12px 24px; border-radius: var(--radius);
+  font-weight: 600; font-size: 14.5px;
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,86,160,0.25); }
+.btn-secondary {
+  background: var(--white); color: var(--ink);
+  padding: 12px 24px; border-radius: var(--radius);
+  font-weight: 600; font-size: 14.5px;
+  border: 1.5px solid var(--border-dark);
+  transition: all 0.2s; display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+.hero-trust {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12.5px; color: var(--subtle);
+}
+.hero-trust-dividers { display: flex; gap: 6px; }
+.trust-dot { width: 4px; height: 4px; background: var(--border-dark); border-radius: 50%; }
+
+/* Hero right — search + quick links */
+.hero-right { display: flex; flex-direction: column; gap: 20px; }
+.search-box {
+  background: var(--white); border: 1.5px solid var(--border-dark);
+  border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-box:focus-within {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(26,86,160,0.1), var(--shadow);
+}
+.search-top {
+  display: flex; align-items: center;
+  padding: 4px 4px 4px 16px; gap: 8px;
+}
+.search-top input {
+  flex: 1; border: none; outline: none;
+  font-size: 14px; font-family: 'Inter', sans-serif;
+  color: var(--ink); background: transparent; padding: 10px 0;
+}
+.search-top input::placeholder { color: var(--subtle); }
+.search-submit {
+  background: var(--blue); color: white; border: none;
+  padding: 10px 18px; border-radius: 8px; font-size: 13.5px;
+  font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: background 0.2s; white-space: nowrap;
+}
+.search-submit:hover { background: var(--blue-dark); }
+.search-suggestions {
+  border-top: 1px solid var(--border);
+  padding: 10px 14px;
+  display: flex; flex-wrap: wrap; gap: 6px; align-items: center;
+}
+.search-sug-label { font-size: 11.5px; color: var(--subtle); font-weight: 500; margin-right: 2px; }
+.sug-pill {
+  font-size: 12px; color: var(--blue);
+  background: var(--blue-light); border: 1px solid var(--blue-mid);
+  padding: 3px 10px; border-radius: 100px;
+  transition: all 0.2s; cursor: pointer;
+}
+.sug-pill:hover { background: var(--blue); color: white; }
+
+.hero-stats-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); overflow: hidden;
+}
+.hero-stat {
+  padding: 16px 14px; text-align: center;
+  border-right: 1px solid var(--border);
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-n {
+  font-family: 'Lora', serif;
+  font-size: 1.6rem; font-weight: 700; color: var(--ink);
+  line-height: 1; margin-bottom: 3px;
+}
+.hero-stat-n span { color: var(--blue); }
+.hero-stat-l { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ── BREAKING STRIP ── */
+.breaking-strip {
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0; overflow: hidden;
+}
+.breaking-inner { display: flex; align-items: center; gap: 0; }
+.breaking-badge {
+  background: var(--blue); color: white;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 5px 16px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.breaking-track-wrap { overflow: hidden; flex: 1; }
+.breaking-track {
+  display: flex; gap: 48px;
+  animation: scroll-left 45s linear infinite;
+  width: max-content; padding-left: 40px;
+}
+.breaking-track:hover { animation-play-state: paused; }
+@keyframes scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.breaking-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; color: var(--ink-light); white-space: nowrap;
+  cursor: pointer; transition: color 0.2s;
+}
+.breaking-item:hover { color: var(--blue); }
+.breaking-cat {
+  font-size: 11px; font-weight: 700;
+  padding: 2px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.bc-lms { background: #dbeafe; color: #1e40af; }
+.bc-corp { background: #fef3c7; color: #92600a; }
+.bc-tech { background: #d1fae5; color: #065f46; }
+.bc-acad { background: #fce7f3; color: #9d174d; }
+.bc-ind  { background: #ede9fe; color: #5b21b6; }
+
+/* ── FEATURED EDITORIAL ── */
+.featured-section { background: var(--white); }
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  grid-template-rows: 1fr 1fr;
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.feat-main {
+  grid-row: 1 / 3;
+  position: relative; overflow: hidden;
+  min-height: 460px; cursor: pointer;
+  display: block;
+}
+.feat-main img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.5s ease;
+}
+.feat-main:hover img { transform: scale(1.02); }
+.feat-main-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,28,53,0.88) 0%, rgba(15,28,53,0.3) 55%, transparent 100%);
+}
+.feat-main-body {
+  position: absolute; bottom: 0; padding: 28px;
+}
+.feat-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 4px; margin-bottom: 10px;
+}
+.feat-main-title {
+  font-family: 'Lora', serif;
+  font-size: 1.5rem; font-weight: 700; line-height: 1.25;
+  color: white; margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.feat-main:hover .feat-main-title { color: #BDD7FF; }
+.feat-meta { display: flex; align-items: center; gap: 10px; font-size: 12.5px; color: rgba(255,255,255,0.7); }
+.feat-meta-sep { width: 3px; height: 3px; background: rgba(255,255,255,0.4); border-radius: 50%; }
+
+.feat-side {
+  background: var(--white); padding: 24px;
+  display: flex; gap: 16px; cursor: pointer;
+  transition: background 0.15s; align-items: flex-start;
+  text-decoration: none; color: inherit;
+}
+.feat-side:hover { background: var(--bg-soft); }
+.feat-side-img {
+  width: 90px; height: 72px; object-fit: cover;
+  border-radius: 6px; flex-shrink: 0;
+  transition: transform 0.3s;
+}
+.feat-side:hover .feat-side-img { transform: scale(1.03); }
+.feat-side-body { flex: 1; }
+.feat-side-title {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem; font-weight: 600; line-height: 1.4;
+  color: var(--ink); margin-bottom: 6px;
+  transition: color 0.2s;
+}
+.feat-side:hover .feat-side-title { color: var(--blue); }
+.feat-side-meta { font-size: 12px; color: var(--muted); }
+
+/* ── STATS BAR ── */
+.stats-bar { padding: 0; background: var(--white); border-bottom: 1px solid var(--border); }
+.stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr);
+}
+.stat-cell {
+  padding: 28px 24px; border-right: 1px solid var(--border); text-align: center;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Lora', serif;
+  font-size: 2rem; font-weight: 700; color: var(--ink); line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-n span { color: var(--blue); }
+.stat-l { font-size: 12.5px; font-weight: 500; color: var(--muted); }
+.stat-sub { font-size: 11.5px; color: var(--subtle); margin-top: 2px; }
+
+/* ── CATEGORY GRID ── */
+.cat-section { background: var(--bg-soft); border-top: 1px solid var(--border); }
+.cat-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 16px;
+}
+.cat-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 24px;
+  transition: all 0.2s; cursor: pointer;
+  text-decoration: none; color: inherit; display: block;
+  position: relative;
+}
+.cat-card:hover {
+  border-color: var(--blue); transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.cat-card-icon {
+  width: 42px; height: 42px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; margin-bottom: 14px;
+}
+.cat-card-name {
+  font-size: 15px; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px; font-family: 'Lora', serif;
+}
+.cat-card-desc {
+  font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 14px;
+}
+.cat-card-link {
+  font-size: 12.5px; font-weight: 600; color: var(--blue);
+  display: flex; align-items: center; gap: 4px; transition: gap 0.2s;
+}
+.cat-card:hover .cat-card-link { gap: 8px; }
+
+/* ── ARTICLE CARDS ── */
+.articles-section { background: var(--white); }
+.articles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+.art-card {
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  overflow: hidden; transition: all 0.2s;
+  text-decoration: none; color: inherit; display: flex; flex-direction: column;
+}
+.art-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); border-color: var(--border-dark); }
+.art-card-img { height: 185px; overflow: hidden; }
+.art-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.art-card:hover .art-card-img img { transform: scale(1.04); }
+.art-card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.art-tag {
+  display: inline-block; font-size: 11px; font-weight: 700;
+  letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 4px; margin-bottom: 10px;
+}
+.art-title {
+  font-family: 'Lora', serif;
+  font-size: 1rem; font-weight: 600; line-height: 1.45;
+  color: var(--ink); margin-bottom: 10px; flex: 1;
+  transition: color 0.2s;
+}
+.art-card:hover .art-title { color: var(--blue); }
+.art-meta { font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+.art-meta-sep { color: var(--border-dark); }
+.read-min { color: var(--blue); font-weight: 500; }
+
+/* ── TOOLS SECTION ── */
+.tools-section { background: var(--bg-soft); border-top: 1px solid var(--border); }
+.tools-intro {
+  max-width: 560px; margin-bottom: 36px;
+}
+.tools-intro p { font-size: 15px; color: var(--muted); line-height: 1.75; margin-top: 10px; }
+.tools-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.tool-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 28px;
+  transition: all 0.2s; text-decoration: none; color: inherit; display: block;
+}
+.tool-card:hover { box-shadow: var(--shadow-md); border-color: var(--blue); transform: translateY(-2px); }
+.tool-icon {
+  width: 48px; height: 48px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 18px;
+}
+.tool-badge {
+  display: inline-block; font-size: 10.5px; font-weight: 700;
+  background: #d1fae5; color: #065f46;
+  padding: 2px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 10px;
+}
+.tool-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 8px; font-family: 'Lora', serif; }
+.tool-desc { font-size: 13.5px; color: var(--muted); line-height: 1.7; margin-bottom: 18px; }
+.tool-cta {
+  font-size: 13.5px; font-weight: 600; color: var(--blue);
+  display: flex; align-items: center; gap: 5px; transition: gap 0.2s;
+}
+.tool-card:hover .tool-cta { gap: 9px; }
+
+/* ── VENDOR SECTION ── */
+.vendor-section { background: var(--white); border-top: 1px solid var(--border); }
+.vendor-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.vendor-kicker { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.vendor-title {
+  font-family: 'Lora', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 16px;
+}
+.vendor-desc { font-size: 14.5px; color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+.vendor-bullets { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.vendor-bullets li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--ink-light);
+}
+.vendor-bullets li::before {
+  content: '✓'; color: var(--blue); font-weight: 700;
+  margin-top: 1px; flex-shrink: 0;
+}
+.vendor-btns { display: flex; gap: 12px; }
+.vendor-right { display: flex; flex-direction: column; gap: 10px; }
+.vendor-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.v-chip {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 12px 16px;
+  font-size: 13.5px; font-weight: 500; color: var(--ink-light);
+  text-align: center; transition: all 0.2s; cursor: pointer;
+  text-decoration: none;
+}
+.v-chip:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.v-chip.featured { border-color: var(--blue-mid); color: var(--blue); background: var(--blue-light); font-weight: 600; }
+.v-more {
+  text-align: center; font-size: 13px; color: var(--muted);
+  background: var(--bg-soft); border: 1px dashed var(--border-dark);
+  border-radius: var(--radius); padding: 12px;
+}
+.v-more a { color: var(--blue); font-weight: 600; }
+
+/* ── POPULAR TOPICS ── */
+.topics-section { background: var(--bg-soft); border-top: 1px solid var(--border); padding: 48px 0; }
+.topics-cloud { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.topic-pill {
+  font-size: 13px; color: var(--ink-light);
+  background: var(--white); border: 1px solid var(--border);
+  padding: 7px 16px; border-radius: 100px;
+  transition: all 0.2s; cursor: pointer; text-decoration: none;
+}
+.topic-pill:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+
+/* ── REPORTS ── */
+.reports-section { background: var(--white); border-top: 1px solid var(--border); }
+.reports-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+.report-card {
+  background: var(--bg-soft); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 22px;
+  transition: all 0.2s; text-decoration: none; color: inherit; display: block;
+}
+.report-card:hover { border-color: var(--blue); box-shadow: var(--shadow); transform: translateY(-1px); }
+.report-icon { font-size: 1.6rem; margin-bottom: 12px; }
+.report-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+.report-title { font-family: 'Lora', serif; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 8px; }
+.report-meta { font-size: 12px; color: var(--muted); }
+
+/* ── LINKEDIN ── */
+.linkedin-section { background: var(--bg-soft); border-top: 1px solid var(--border); }
+.li-header-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.li-logo {
+  width: 28px; height: 28px; background: #0A66C2;
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.li-logo svg { width: 16px; height: 16px; }
+.li-follow { font-size: 13px; font-weight: 600; color: #0A66C2; border: 1.5px solid #0A66C2; padding: 5px 14px; border-radius: 6px; transition: all 0.2s; }
+.li-follow:hover { background: #0A66C2; color: white; }
+.li-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 28px; }
+.li-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 22px;
+  transition: all 0.2s; cursor: pointer; display: block; text-decoration: none;
+}
+.li-card:hover { border-color: #0A66C2; box-shadow: var(--shadow); }
+.li-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.li-avatar {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: linear-gradient(135deg, #0A66C2, #4FA8D8);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Lora', serif; font-weight: 700; color: white; font-size: 16px;
+  flex-shrink: 0;
+}
+.li-name { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.li-sub { font-size: 12px; color: var(--muted); }
+.li-content {
+  font-size: 13.5px; color: var(--ink-light); line-height: 1.7;
+  margin-bottom: 14px;
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden;
+}
+.li-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.li-tag { font-size: 12px; color: #0A66C2; background: #EBF5FF; padding: 2px 9px; border-radius: 4px; font-weight: 500; }
+.li-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; border-top: 1px solid var(--border); font-size: 12px; color: var(--muted); }
+.li-stats { display: flex; gap: 12px; }
+.li-view { font-size: 12px; font-weight: 600; color: #0A66C2; display: flex; align-items: center; gap: 5px; }
+
+/* ── NEWSLETTER ── */
+.newsletter-section { background: var(--blue); padding: 56px 0; }
+.newsletter-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+.newsletter-inner h2 {
+  font-family: 'Lora', serif;
+  font-size: 2rem; font-weight: 700; color: white;
+  margin-bottom: 10px; letter-spacing: -0.3px;
+}
+.newsletter-inner p { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 28px; }
+.nl-form {
+  display: flex; gap: 8px;
+  background: white; border-radius: var(--radius-lg); padding: 6px 6px 6px 18px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.nl-form input {
+  flex: 1; border: none; outline: none; font-size: 14.5px;
+  font-family: 'Inter', sans-serif; color: var(--ink); background: transparent;
+}
+.nl-form input::placeholder { color: var(--subtle); }
+.nl-form button {
+  background: var(--blue); color: white; border: none;
+  padding: 11px 22px; border-radius: 8px; font-weight: 700;
+  font-size: 14px; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: background 0.2s; white-space: nowrap;
+}
+.nl-form button:hover { background: var(--blue-dark); }
+.nl-note { font-size: 12.5px; color: rgba(255,255,255,0.6); margin-top: 12px; }
+
+/* ── FOOTER ── */
+footer { background: var(--ink); padding: 56px 0 28px; }
+.footer-top {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand .logo {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+.footer-brand .logo-mark {
+  width: 32px; height: 32px; background: var(--blue);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  color: white; font-family: 'Lora', serif; font-weight: 700; font-size: 14px;
+}
+.footer-brand .logo-text {
+  font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 700; color: white;
+}
+.footer-brand .logo-text span { color: #80AADD; }
+.footer-brand p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.8; max-width: 260px; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 8px; }
+.social-link {
+  width: 34px; height: 34px; border-radius: 6px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.5); font-size: 13px;
+  transition: all 0.2s; text-decoration: none;
+}
+.social-link:hover { background: var(--blue); color: white; border-color: var(--blue); }
+.footer-col h4 {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul a { font-size: 13.5px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+.footer-col ul a:hover { color: white; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px; display: flex;
+  justify-content: space-between; align-items: center; gap: 20px;
+  font-size: 12.5px; color: rgba(255,255,255,0.35);
+  flex-wrap: wrap;
+}
+.footer-bottom a { color: rgba(255,255,255,0.35); text-decoration: none; }
+.footer-bottom a:hover { color: rgba(255,255,255,0.6); }
+.footer-bottom-links { display: flex; gap: 16px; }
+
+/* ── SCROLL REVEAL ── */
+.fade-in {
+  opacity: 0; transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: none; }
+.fade-in.d1 { transition-delay: 0.1s; }
+.fade-in.d2 { transition-delay: 0.2s; }
+.fade-in.d3 { transition-delay: 0.3s; }
+.fade-in.d4 { transition-delay: 0.4s; }
+.fade-in.d5 { transition-delay: 0.5s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .feat-main { grid-row: auto; min-height: 300px; }
+  .cat-grid { grid-template-columns: 1fr 1fr; }
+  .articles-grid { grid-template-columns: 1fr 1fr; }
+  .tools-grid { grid-template-columns: 1fr; }
+  .vendor-inner { grid-template-columns: 1fr; }
+  .li-grid { grid-template-columns: 1fr; }
+  .reports-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .top-bar-left { display: none; }
+  section { padding: 48px 0; }
+  .cat-grid, .articles-grid, .reports-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 2rem; }
+  .nl-form { flex-direction: column; padding: 12px; }
+  .nl-form button { width: 100%; }
+  .footer-top { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="container">
+    <div class="top-bar-left">
+      <span>📍 Independent. Unsponsored. Reliable.</span>
+      <span class="top-bar-sep">|</span>
+      <a href="https://lmspedia.org/blogs/">150+ Guides Published</a>
+      <span class="top-bar-sep">|</span>
+      <a href="#">Follow us on LinkedIn</a>
+    </div>
+    <div>
+      <a href="https://lmspedia.org/contact-us">Contact Us</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://lmspedia.org" class="nav-logo">
+        <div class="nav-logo-mark">L</div>
+        <div class="nav-logo-text">LMS<span>pedia</span></div>
+      </a>
+      <div class="nav-divider"></div>
+      <ul class="nav-links">
+        <li><a href="https://lmspedia.org/">Home</a></li>
+        <li class="has-dd">
+          <a href="https://lmspedia.org/blogs/">Articles</a>
+          <div class="dd">
+            <a href="https://lmspedia.org/category/lms-fundamentals">LMS Fundamentals</a>
+            <a href="https://lmspedia.org/category/corporate-learning-systems">Corporate Learning</a>
+            <a href="https://lmspedia.org/category/implementation-operations">Implementation & Ops</a>
+            <a href="https://lmspedia.org/category/academic-learning-systems">Academic Systems</a>
+            <a href="https://lmspedia.org/category/industry-use-cases">Industry Use Cases</a>
+            <a href="https://lmspedia.org/category/elearning">eLearning</a>
+          </div>
+        </li>
+        <li class="has-dd">
+          <a href="#">Free Tools</a>
+          <div class="dd">
+            <a href="#">RFP Template Generator</a>
+            <a href="#">Training Needs Analyzer</a>
+            <a href="#">ROI Calculator</a>
+          </div>
+        </li>
+        <li><a href="#">Vendor Directory</a></li>
+        <li><a href="https://lmspedia.org/popular-topics/">Popular Topics</a></li>
+        <li><a href="https://lmspedia.org/about-us/">About</a></li>
+      </ul>
+      <div class="nav-right">
+        <a href="https://lmspedia.org/contact-us" class="nav-btn-solid">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left fade-in">
+        <div class="hero-eyebrow">
+          <div class="hero-eyebrow-dot"></div>
+          The LMS Industry's Independent Knowledge Base
+        </div>
+        <h1 class="hero-title">
+          Where professionals go to understand <em>Learning Management Systems</em>
+        </h1>
+        <p class="hero-desc">
+          Independent guides, vendor analysis, implementation resources, and decision-making tools — covering LMS, LXP, TMS, and the full learning technology ecosystem. Written for professionals, teams, and decision-makers.
+        </p>
+        <div class="hero-btns">
+          <a href="https://lmspedia.org/what-is-a-learning-management-system/" class="btn-primary">Start with LMS Fundamentals →</a>
+          <a href="https://lmspedia.org/popular-topics/" class="btn-secondary">Browse All Topics</a>
+        </div>
+        <div class="hero-trust">
+          <span>✓ No vendor sponsorships</span>
+          <div class="hero-trust-dividers"><div class="trust-dot"></div></div>
+          <span>✓ No paid rankings</span>
+          <div class="hero-trust-dividers"><div class="trust-dot"></div></div>
+          <span>✓ Updated 2026</span>
+        </div>
+      </div>
+      <div class="hero-right fade-in d2">
+        <div class="search-box">
+          <div class="search-top">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" style="flex-shrink:0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <input type="text" placeholder="Search LMS guides, vendors, standards..." id="search-input">
+            <button class="search-submit" onclick="doSearch()">Search</button>
+          </div>
+          <div class="search-suggestions">
+            <span class="search-sug-label">Popular:</span>
+            <a href="https://lmspedia.org/lms-vs-lxp/" class="sug-pill">LMS vs LXP</a>
+            <a href="https://lmspedia.org/what-is-scorm/" class="sug-pill">SCORM Guide</a>
+            <a href="https://lmspedia.org/how-to-choose-right-lms-a-practical-vendor-evaluation-checklist/" class="sug-pill">Vendor Checklist</a>
+            <a href="https://lmspedia.org/lms-architecture-explained/" class="sug-pill">LMS Architecture</a>
+          </div>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hero-stat">
+            <div class="hero-stat-n">150<span>+</span></div>
+            <div class="hero-stat-l">Guides</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n">40<span>+</span></div>
+            <div class="hero-stat-l">Vendors</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-n">3</div>
+            <div class="hero-stat-l">Free Tools</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKING / LATEST STRIP -->
+<div class="breaking-strip">
+  <div class="container breaking-inner">
+    <div class="breaking-badge">Latest</div>
+    <div class="breaking-track-wrap">
+      <div class="breaking-track">
+        <a href="https://lmspedia.org/lms-pricing-trends-2026/" class="breaking-item"><span class="breaking-cat bc-lms">Report</span>LMS Pricing Trends 2026: How Vendor Pricing Has Changed</a>
+        <a href="https://lmspedia.org/lms-vs-lxp/" class="breaking-item"><span class="breaking-cat bc-corp">Comparison</span>LMS vs LXP: Differences, Use Cases, and Trade-Offs (2026)</a>
+        <a href="https://lmspedia.org/what-is-scorm/" class="breaking-item"><span class="breaking-cat bc-tech">Standards</span>SCORM vs xAPI vs CMI5 — Complete 2026 Guide</a>
+        <a href="https://lmspedia.org/lms-architecture-explained/" class="breaking-item"><span class="breaking-cat bc-lms">Technical</span>LMS Architecture Explained: The 2026 Complete Guide</a>
+        <a href="https://lmspedia.org/lms-in-finance-compliance-audit-risk/" class="breaking-item"><span class="breaking-cat bc-ind">Industry</span>LMS in Finance: Compliance, Audit Readiness & Risk</a>
+        <a href="https://lmspedia.org/cognitive-processes-in-learning/" class="breaking-item"><span class="breaking-cat bc-acad">Learning Science</span>How Cognitive Learning Works: Memory, Attention & Perception</a>
+        <!-- duplicate for seamless loop -->
+        <a href="https://lmspedia.org/lms-pricing-trends-2026/" class="breaking-item"><span class="breaking-cat bc-lms">Report</span>LMS Pricing Trends 2026: How Vendor Pricing Has Changed</a>
+        <a href="https://lmspedia.org/lms-vs-lxp/" class="breaking-item"><span class="breaking-cat bc-corp">Comparison</span>LMS vs LXP: Differences, Use Cases, and Trade-Offs (2026)</a>
+        <a href="https://lmspedia.org/what-is-scorm/" class="breaking-item"><span class="breaking-cat bc-tech">Standards</span>SCORM vs xAPI vs CMI5 — Complete 2026 Guide</a>
+        <a href="https://lmspedia.org/lms-architecture-explained/" class="breaking-item"><span class="breaking-cat bc-lms">Technical</span>LMS Architecture Explained: The 2026 Complete Guide</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row">
+      <div class="stat-cell fade-in">
+        <div class="stat-n">150<span>+</span></div>
+        <div class="stat-l">In-depth articles & guides</div>
+        <div class="stat-sub">Updated for 2026</div>
+      </div>
+      <div class="stat-cell fade-in d1">
+        <div class="stat-n">40<span>+</span></div>
+        <div class="stat-l">LMS vendors independently covered</div>
+        <div class="stat-sub">No sponsored profiles</div>
+      </div>
+      <div class="stat-cell fade-in d2">
+        <div class="stat-n">8</div>
+        <div class="stat-l">Content categories</div>
+        <div class="stat-sub">Fundamentals to advanced technical</div>
+      </div>
+      <div class="stat-cell fade-in d3">
+        <div class="stat-n">3</div>
+        <div class="stat-l">Free professional tools</div>
+        <div class="stat-sub">RFP · ROI · Training Needs</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED EDITORIAL -->
+<section class="featured-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Featured</div>
+        <h2 class="section-title">Editor's Picks</h2>
+      </div>
+      <a href="https://lmspedia.org/blogs/" class="see-all">View all articles →</a>
+    </div>
+    <div class="featured-grid fade-in">
+      <a href="https://lmspedia.org/what-is-a-learning-management-system/" class="feat-main">
+        <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-fauxels-3184405-1024x683.jpg" alt="What is LMS" onerror="this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900&q=80'">
+        <div class="feat-main-overlay"></div>
+        <div class="feat-main-body">
+          <span class="feat-tag" style="background:rgba(219,234,254,0.2);color:#BDD7FF;">LMS Fundamentals</span>
+          <div class="feat-main-title">What Is a Learning Management System? A Complete Guide to LMS Functionality and Architecture</div>
+          <div class="feat-meta">
+            <span>James Smith</span><span class="feat-meta-sep"></span>
+            <span>Feb 19, 2026</span><span class="feat-meta-sep"></span>
+            <span>18 min read</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/lms-vs-lxp/" class="feat-side">
+        <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-monoar-rahman-22660-1093711-1024x682.jpeg" alt="LMS vs LXP" class="feat-side-img" onerror="this.src='https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=200&q=80'">
+        <div class="feat-side-body">
+          <div class="feat-tag" style="background:#fef3c7;color:#92600a;margin-bottom:8px;">Comparison</div>
+          <div class="feat-side-title">LMS vs LXP Explained: Differences, Use Cases, and Trade-Offs in Corporate Learning (2026)</div>
+          <div class="feat-side-meta">Mar 2026 · 14 min read</div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/lms-architecture-explained/" class="feat-side">
+        <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-thisisengineering-3861958-1024x683.jpg" alt="LMS Architecture" class="feat-side-img" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=80'">
+        <div class="feat-side-body">
+          <div class="feat-tag" style="background:#d1fae5;color:#065f46;margin-bottom:8px;">Technical Guide</div>
+          <div class="feat-side-title">LMS Architecture Explained: The 2026 Complete Technical Guide</div>
+          <div class="feat-side-meta">Feb 21, 2026 · 22 min read</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY HUB -->
+<section class="cat-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Browse by Category</div>
+        <h2 class="section-title">Everything you need on LMS & learning technology</h2>
+      </div>
+      <a href="https://lmspedia.org/popular-topics/" class="see-all">All topics →</a>
+    </div>
+    <div class="cat-grid">
+      <a href="https://lmspedia.org/category/lms-fundamentals" class="cat-card fade-in">
+        <div class="cat-card-icon" style="background:#dbeafe;">📚</div>
+        <div class="cat-card-name">LMS Fundamentals</div>
+        <div class="cat-card-desc">Core concepts, terminology, and how LMS platforms work — written for professionals at every level of familiarity.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+      <a href="https://lmspedia.org/category/corporate-learning-systems" class="cat-card fade-in d1">
+        <div class="cat-card-icon" style="background:#fef3c7;">🏢</div>
+        <div class="cat-card-name">Corporate Learning Systems</div>
+        <div class="cat-card-desc">Enterprise LMS, employee development, compliance training, and large-scale learning deployments.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+      <a href="https://lmspedia.org/category/implementation-operations" class="cat-card fade-in d2">
+        <div class="cat-card-icon" style="background:#d1fae5;">⚙️</div>
+        <div class="cat-card-name">Implementation & Operations</div>
+        <div class="cat-card-desc">SCORM, xAPI, HRIS integrations, architecture decisions, hosting, and technical operations.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+      <a href="https://lmspedia.org/category/academic-learning-systems" class="cat-card fade-in">
+        <div class="cat-card-icon" style="background:#fce7f3;">🎓</div>
+        <div class="cat-card-name">Academic Learning Systems</div>
+        <div class="cat-card-desc">K-12 to higher education — how institutions evaluate, select, and manage LMS platforms.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+      <a href="https://lmspedia.org/category/industry-use-cases" class="cat-card fade-in d1">
+        <div class="cat-card-icon" style="background:#ede9fe;">🏭</div>
+        <div class="cat-card-name">Industry Use Cases</div>
+        <div class="cat-card-desc">How finance, healthcare, manufacturing, and other regulated industries deploy and use LMS platforms.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+      <a href="https://lmspedia.org/category/elearning" class="cat-card fade-in d2">
+        <div class="cat-card-icon" style="background:#ecfdf5;">💡</div>
+        <div class="cat-card-name">eLearning & Learning Science</div>
+        <div class="cat-card-desc">Cognitive learning strategies, instructional design principles, and the science of what makes training effective.</div>
+        <div class="cat-card-link">Explore guides →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LATEST ARTICLES -->
+<section class="articles-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Recently Published</div>
+        <h2 class="section-title">Latest from LMSPedia</h2>
+      </div>
+      <a href="https://lmspedia.org/blogs/" class="see-all">All articles →</a>
+    </div>
+    <div class="articles-grid">
+      <a href="https://lmspedia.org/lms-terminology/" class="art-card fade-in">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-pixabay-278888-1024x682.jpeg" alt="LMS Terms" onerror="this.src='https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#ecfdf5;color:#065f46;">eLearning</span>
+          <div class="art-title">LMS Terminology Explained: 50+ Learning Management System Terms Explained Simply</div>
+          <div class="art-meta"><span>Feb 26, 2026</span><span class="art-meta-sep">·</span><span class="read-min">12 min read</span></div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/hris-integration-in-lms-why-it-breaks-where-it-works-and-how-different-approaches-compare/" class="art-card fade-in d1">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-pixabay-270408-1024x682.jpeg" alt="HRIS Integration" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#dbeafe;color:#1e40af;">Integration</span>
+          <div class="art-title">HRIS Integration in LMS: Why It Breaks, Where It Works, and How Different Approaches Compare</div>
+          <div class="art-meta"><span>Feb 2026</span><span class="art-meta-sep">·</span><span class="read-min">16 min read</span></div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/lms-hosting-explained-cloud-vs-on-premise-vs-hybrid-what-the-trade-offs-really-look-like/" class="art-card fade-in d2">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-pixabay-2703481-1024x682.jpeg" alt="LMS Hosting" onerror="this.src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#d1fae5;color:#065f46;">Technical</span>
+          <div class="art-title">LMS Hosting Explained: Cloud vs On-Premise vs Hybrid — What the Trade-Offs Really Look Like</div>
+          <div class="art-meta"><span>Feb 27, 2026</span><span class="art-meta-sep">·</span><span class="read-min">15 min read</span></div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/best-lms-for-employee-development/" class="art-card fade-in">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/02/pexels-olly-927022-1024x683.jpg" alt="Employee Dev" onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#fef3c7;color:#92600a;">Corporate</span>
+          <div class="art-title">LMS for Employee Development: Features, Benefits, Best Platforms & How to Choose (2026 Guide)</div>
+          <div class="art-meta"><span>Feb 21, 2026</span><span class="art-meta-sep">·</span><span class="read-min">20 min read</span></div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/lms-for-schools-2025-guide/" class="art-card fade-in d1">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/03/learning-management-system-for-schools-1024x682.jpeg" alt="LMS Schools" onerror="this.src='https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#fce7f3;color:#9d174d;">Academic</span>
+          <div class="art-title">Learning Management System for Schools: The Complete 2025 Guide (K-12 to Higher Education)</div>
+          <div class="art-meta"><span>Mar 23, 2026</span><span class="art-meta-sep">·</span><span class="read-min">17 min read</span></div>
+        </div>
+      </a>
+      <a href="https://lmspedia.org/lms-pricing-trends-2026/" class="art-card fade-in d2">
+        <div class="art-card-img">
+          <img src="https://lmspedia.org/wp-content/uploads/2026/04/lms-pricing-trends-2026-1024x682.jpeg" alt="LMS Pricing" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500'">
+        </div>
+        <div class="art-card-body">
+          <span class="art-tag" style="background:#ede9fe;color:#5b21b6;">Industry Report</span>
+          <div class="art-title">LMS Pricing Trends 2026: How Vendor Pricing Has Changed</div>
+          <div class="art-meta"><span>Apr 10, 2026</span><span class="art-meta-sep">·</span><span class="read-min">14 min read</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FREE TOOLS -->
+<section class="tools-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Free Tools</div>
+        <h2 class="section-title">Decision-making tools for LMS professionals</h2>
+      </div>
+    </div>
+    <div class="tools-intro fade-in">
+      <p>We built these tools to help L&D teams, procurement managers, and IT leaders make better, faster LMS decisions — no sign-up required.</p>
+    </div>
+    <div class="tools-grid">
+      <a href="#" class="tool-card fade-in">
+        <div class="tool-icon" style="background:#dbeafe;">📋</div>
+        <div class="tool-badge">Free</div>
+        <div class="tool-title">RFP Template Generator</div>
+        <div class="tool-desc">Generate a structured, customizable Request for Proposal for your LMS procurement process. Covers technical requirements, evaluation criteria, and scoring matrices used by enterprise procurement teams.</div>
+        <div class="tool-cta">Generate your RFP →</div>
+      </a>
+      <a href="#" class="tool-card fade-in d1">
+        <div class="tool-icon" style="background:#fef3c7;">🎯</div>
+        <div class="tool-badge">Free</div>
+        <div class="tool-title">Training Needs Analyzer</div>
+        <div class="tool-desc">Identify your organization's training gaps with a structured needs analysis. Get tailored LMS feature recommendations and deployment guidance based on your specific learning objectives and audience.</div>
+        <div class="tool-cta">Analyze your needs →</div>
+      </a>
+      <a href="#" class="tool-card fade-in d2">
+        <div class="tool-icon" style="background:#d1fae5;">📈</div>
+        <div class="tool-badge">Free</div>
+        <div class="tool-title">LMS ROI Calculator</div>
+        <div class="tool-desc">Calculate the return on your LMS investment. Factor in training cost savings, productivity improvements, compliance risk reduction, and employee retention to build a data-backed business case.</div>
+        <div class="tool-cta">Calculate your ROI →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VENDOR DIRECTORY -->
+<section class="vendor-section">
+  <div class="container">
+    <div class="vendor-inner">
+      <div class="fade-in">
+        <div class="vendor-kicker">Vendor Intelligence</div>
+        <h2 class="vendor-title">Find the right LMS vendor — with independent analysis</h2>
+        <p class="vendor-desc">We maintain structured, independent profiles on 40+ LMS vendors. No sponsored rankings, no paid placements. Just honest, structured comparisons of features, pricing models, ideal use cases, and real trade-offs.</p>
+        <ul class="vendor-bullets">
+          <li>Structured profiles on 40+ vendors across enterprise, SMB, and academic segments</li>
+          <li>Independent evaluation — no vendor relationships or sponsorships</li>
+          <li>Feature comparison, pricing models, and use case breakdowns</li>
+          <li>Pair with our free RFP template to start procurement the right way</li>
+        </ul>
+        <div class="vendor-btns">
+          <a href="#" class="btn-primary">Browse Vendor Directory →</a>
+          <a href="#" class="btn-secondary">Compare Vendors</a>
+        </div>
+      </div>
+      <div class="fade-in d2">
+        <div class="vendor-grid">
+          <a href="#" class="v-chip featured">Docebo</a>
+          <a href="#" class="v-chip">Cornerstone OnDemand</a>
+          <a href="#" class="v-chip">Moodle</a>
+          <a href="#" class="v-chip featured">TalentLMS</a>
+          <a href="#" class="v-chip">Canvas LMS</a>
+          <a href="#" class="v-chip">SAP SuccessFactors</a>
+          <a href="#" class="v-chip featured">Absorb LMS</a>
+          <a href="#" class="v-chip">360Learning</a>
+          <a href="#" class="v-chip">iSpring</a>
+          <a href="#" class="v-chip">Blackboard</a>
+        </div>
+        <div class="v-more" style="margin-top:8px;">
+          + 30 more vendors covered → <a href="#">View full directory</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POPULAR TOPICS -->
+<section class="topics-section">
+  <div class="container">
+    <div class="section-header fade-in" style="margin-bottom:0;">
+      <div>
+        <div class="section-label">Trending</div>
+        <h2 class="section-title">Most-read topics</h2>
+      </div>
+      <a href="https://lmspedia.org/popular-topics/" class="see-all">Browse all →</a>
+    </div>
+    <div class="topics-cloud fade-in">
+      <a href="https://lmspedia.org/what-is-a-learning-management-system/" class="topic-pill">What is an LMS?</a>
+      <a href="https://lmspedia.org/lms-vs-lxp/" class="topic-pill">LMS vs LXP</a>
+      <a href="https://lmspedia.org/what-is-scorm/" class="topic-pill">SCORM Explained</a>
+      <a href="https://lmspedia.org/lms-architecture-explained/" class="topic-pill">LMS Architecture</a>
+      <a href="https://lmspedia.org/corporate-lms-vs-academic-lms/" class="topic-pill">Corporate vs Academic LMS</a>
+      <a href="https://lmspedia.org/hris-integration-in-lms-why-it-breaks-where-it-works-and-how-different-approaches-compare/" class="topic-pill">HRIS Integration</a>
+      <a href="https://lmspedia.org/lms-hosting-explained-cloud-vs-on-premise-vs-hybrid-what-the-trade-offs-really-look-like/" class="topic-pill">Cloud vs On-Premise LMS</a>
+      <a href="https://lmspedia.org/lms-content-strategy-how-to-structure-learning-paths-without-overcomplicating-them/" class="topic-pill">LMS Content Strategy</a>
+      <a href="https://lmspedia.org/types-of-lms/" class="topic-pill">Types of LMS</a>
+      <a href="https://lmspedia.org/best-lms-for-employee-development/" class="topic-pill">LMS for Employee Development</a>
+      <a href="https://lmspedia.org/lms-in-finance-compliance-audit-risk/" class="topic-pill">LMS in Finance</a>
+      <a href="https://lmspedia.org/lms-terminology/" class="topic-pill">LMS Terminology</a>
+      <a href="https://lmspedia.org/cognitive-processes-in-learning/" class="topic-pill">Cognitive Learning</a>
+      <a href="https://lmspedia.org/lms-for-schools-2025-guide/" class="topic-pill">LMS for Schools</a>
+    </div>
+  </div>
+</section>
+
+<!-- DEEP DIVE REPORTS -->
+<section class="reports-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">Technical Guides</div>
+        <h2 class="section-title">Deep-dive resources</h2>
+      </div>
+    </div>
+    <div class="reports-grid">
+      <a href="https://lmspedia.org/scorm-vs-xapi-guide/" class="report-card fade-in">
+        <div class="report-icon">📡</div>
+        <div class="report-tag">Standards</div>
+        <div class="report-title">SCORM vs xAPI vs cmi5: Complete Technical Comparison</div>
+        <div class="report-meta">Feb 2026 · 25 min read</div>
+      </a>
+      <a href="https://lmspedia.org/lms-user-roles-explained-how-to-architect-admin-instructor-and-learner-permissions-for-scale/" class="report-card fade-in d1">
+        <div class="report-icon">🔐</div>
+        <div class="report-tag">Architecture</div>
+        <div class="report-title">LMS User Roles & Permissions: Architecture Guide for Scale</div>
+        <div class="report-meta">Feb 2026 · 18 min read</div>
+      </a>
+      <a href="https://lmspedia.org/learning-record-store-lrs-architecture-governance-guide/" class="report-card fade-in d2">
+        <div class="report-icon">🗄️</div>
+        <div class="report-tag">Data & Governance</div>
+        <div class="report-title">Learning Record Store (LRS): Architecture & Real-World Trade-Offs</div>
+        <div class="report-meta">Feb 2026 · 20 min read</div>
+      </a>
+      <a href="https://lmspedia.org/the-financial-sso-playbook-security-compliance-and-trade-offs-for-lms/" class="report-card fade-in d3">
+        <div class="report-icon">🛡️</div>
+        <div class="report-tag">Security & Compliance</div>
+        <div class="report-title">The Financial SSO Playbook: Security, Compliance & Trade-Offs for LMS</div>
+        <div class="report-meta">Feb 2026 · 16 min read</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LINKEDIN -->
+<section class="linkedin-section">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div>
+        <div class="section-label">On LinkedIn</div>
+        <h2 class="section-title">Insights from the LMSPedia community</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="li-header-row">
+          <div class="li-logo">
+            <svg viewBox="0 0 24 24" fill="white"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </div>
+        </div>
+        <a href="https://www.linkedin.com/company/lmspedia" class="li-follow">Follow LMSPedia</a>
+      </div>
+    </div>
+    <div class="li-grid">
+      <a href="https://www.linkedin.com/company/lmspedia" class="li-card fade-in">
+        <div class="li-card-header">
+          <div class="li-avatar">L</div>
+          <div>
+            <div class="li-name">LMSPedia</div>
+            <div class="li-sub">Independent LMS Reference · 2 days ago</div>
+          </div>
+        </div>
+        <div class="li-content">
+          Most organizations don't fail at choosing an LMS. They fail at scoping the problem first.
+
+Before you open a vendor demo, you need answers to: Who are your learners? What behaviors should training change? How will you measure success?
+
+An LMS is a delivery vehicle, not a strategy. Here's what a proper training needs analysis looks like before procurement begins...
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">#LMS</span>
+          <span class="li-tag">#TrainingStrategy</span>
+          <span class="li-tag">#LearningTechnology</span>
+        </div>
+        <div class="li-footer">
+          <div class="li-stats">
+            <span>👍 284</span>
+            <span>💬 31</span>
+            <span>↗ 47</span>
+          </div>
+          <div class="li-view">View on LinkedIn →</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/lmspedia" class="li-card fade-in d1">
+        <div class="li-card-header">
+          <div class="li-avatar">L</div>
+          <div>
+            <div class="li-name">LMSPedia</div>
+            <div class="li-sub">Independent LMS Reference · 5 days ago</div>
+          </div>
+        </div>
+        <div class="li-content">
+          Hot take: SCORM is not dying. It's just misunderstood.
+
+xAPI gets all the attention, but 85% of corporate LMS deployments still run on SCORM 1.2. Why? Because it works. It's stable. It's universally supported.
+
+The real question isn't "SCORM or xAPI" — it's "what learning data do you actually need to capture, and does your LMS analytics layer support acting on it?"
+
+Here's how to make the right call for your organization...
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">#SCORM</span>
+          <span class="li-tag">#xAPI</span>
+          <span class="li-tag">#eLearning</span>
+        </div>
+        <div class="li-footer">
+          <div class="li-stats">
+            <span>👍 512</span>
+            <span>💬 68</span>
+            <span>↗ 93</span>
+          </div>
+          <div class="li-view">View on LinkedIn →</div>
+        </div>
+      </a>
+      <a href="https://www.linkedin.com/company/lmspedia" class="li-card fade-in d2">
+        <div class="li-card-header">
+          <div class="li-avatar">L</div>
+          <div>
+            <div class="li-name">LMSPedia</div>
+            <div class="li-sub">Independent LMS Reference · 1 week ago</div>
+          </div>
+        </div>
+        <div class="li-content">
+          We analyzed how 6 major LMS vendors handle HRIS integration and the findings are sobering.
+
+Most advertise "seamless integration." What they mean is: "we have a REST API and a connector that breaks every time your HR platform pushes a major update."
+
+The real differentiator isn't the integration existing — it's how the vendor handles sync failures, field mapping conflicts, and deprovisioning at scale.
+
+Here's what to actually ask during demos...
+        </div>
+        <div class="li-tags">
+          <span class="li-tag">#HRIS</span>
+          <span class="li-tag">#LMSIntegration</span>
+          <span class="li-tag">#HRTech</span>
+        </div>
+        <div class="li-footer">
+          <div class="li-stats">
+            <span>👍 398</span>
+            <span>💬 55</span>
+            <span>↗ 71</span>
+          </div>
+          <div class="li-view">View on LinkedIn →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-inner fade-in">
+      <h2>Stay ahead in learning technology</h2>
+      <p>Get the latest LMS guides, vendor analysis, and industry reports in your inbox. No noise — just the content that matters to L&D professionals and decision-makers.</p>
+      <div class="nl-form">
+        <input type="email" placeholder="Your email address" id="nl-email">
+        <button onclick="doNewsletter()">Subscribe — It's Free</button>
+      </div>
+      <p class="nl-note">Trusted by 2,000+ L&D professionals. Unsubscribe anytime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-mark">L</div>
+          <div class="logo-text">LMS<span>pedia</span></div>
+        </div>
+        <p>An independent reference for learning management systems and learning technologies. No vendor relationships. No sponsored content. Just reliable, well-researched information.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" title="LinkedIn">in</a>
+          <a href="#" class="social-link" title="Twitter">𝕏</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+          <a href="#" class="social-link" title="RSS">⊕</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="https://lmspedia.org/blogs/">All Articles</a></li>
+          <li><a href="https://lmspedia.org/popular-topics/">Popular Topics</a></li>
+          <li><a href="#">Vendor Directory</a></li>
+          <li><a href="#">Industry Reports</a></li>
+          <li><a href="#">LMS Glossary</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Free Tools</h4>
+        <ul>
+          <li><a href="#">RFP Template Generator</a></li>
+          <li><a href="#">Training Needs Analyzer</a></li>
+          <li><a href="#">ROI Calculator</a></li>
+          <li><a href="#">Vendor Comparison</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="https://lmspedia.org/about-us/">About LMSPedia</a></li>
+          <li><a href="https://lmspedia.org/contact-us">Contact Us</a></li>
+          <li><a href="https://lmspedia.org/privacy-policy">Privacy Policy</a></li>
+          <li><a href="https://lmspedia.org/terms-of-use/">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LMSPedia — Independent. Unsponsored. Reliable.</span>
+      <div class="footer-bottom-links">
+        <a href="https://lmspedia.org/privacy-policy">Privacy</a>
+        <a href="https://lmspedia.org/terms-of-use/">Terms</a>
+        <a href="https://lmspedia.org/about-us/">About</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Search
+function doSearch() {
+  const q = document.getElementById('search-input').value.trim();
+  if (q) window.open(`https://lmspedia.org/?s=${encodeURIComponent(q)}`, '_blank');
+}
+document.getElementById('search-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doSearch();
+});
+
+// Newsletter
+function doNewsletter() {
+  const email = document.getElementById('nl-email').value.trim();
+  if (email && email.includes('@')) {
+    window.open(`https://lmspedia.org/contact-us`, '_blank');
+  } else {
+    const inp = document.getElementById('nl-email');
+    inp.style.outline = '2px solid #fca5a5';
+    setTimeout(() => inp.style.outline = '', 2000);
+  }
+}
+</script>
+
+</body>
+</html>
